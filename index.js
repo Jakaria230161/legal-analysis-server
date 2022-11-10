@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require("mongodb");
 require('dotenv').config();
 
 const app = express();
@@ -11,9 +11,14 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+const uri =
+  "mongodb+srv://lawyerMongodb:cYcF69bmSSGn7v5G@cluster0.wjzfsxz.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverApi: ServerApiVersion.v1,
+});
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mordayw.mongodb.net/?retryWrites=true&w=majority`;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 function verifyJWT(req, res, next) {
     const authHeader = req.headers.authorization;
@@ -32,8 +37,8 @@ function verifyJWT(req, res, next) {
 
 async function run() {
     try {
-        const serviceCollection = client.db('cuteCut').collection('services');
-        const reviewsCollection = client.db('cuteCut').collection('reviews');
+        const serviceCollection = client.db('legalAnalysis').collection('services');
+        const reviewsCollection = client.db('legalAnalysis').collection('reviews');
 
 
         //JWT  Token
@@ -180,9 +185,9 @@ run().catch(console.dir);
 
 
 app.get('/', (req, res) => {
-    res.send('Cute Cut Hair Studio is Running')
+    res.send('Legal Analysis service is running')
 })
 
 app.listen(port, () => {
-    console.log(`Cute Cut Hair Studio running on Server ${port}`);
+    console.log(`Legal Analysis firm running on the Server ${port}`);
 })
