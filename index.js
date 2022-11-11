@@ -1,3 +1,4 @@
+// required express
 const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
@@ -192,4 +193,5 @@ app.listen(port, () => {
     console.log(`Legal Analysis firm running on the Server ${port}`);
 })
 
-// thank you ph hero 
+// thank you ph hero
+
