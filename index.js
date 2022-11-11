@@ -191,3 +191,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Legal Analysis firm running on the Server ${port}`);
 })
+
+// thank you ph hero 
