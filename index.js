@@ -50,12 +50,12 @@ async function run() {
 
 
         //all data read
-        app.get('/services', async (req, res) => {
-            const query = {};
-            const cursors = serviceCollection.find(query).sort({ $time: -1 })
-            const services = await cursors.toArray()
-            res.send(services)
-        })
+        // app.get('/services', async (req, res) => {
+        //     const query = {};
+        //     const cursors = serviceCollection.find(query).sort({ $time: -1 })
+        //     const services = await cursors.toArray()
+        //     res.send(services)
+        // })
 
         //single service
         app.get('/services/:id', async (req, res) => {
@@ -70,7 +70,7 @@ async function run() {
         app.get('/serviceshome', async (req, res) => {
             const query = {};
             const cursor = serviceCollection.find(query).sort({ $natural: -1 })
-            const services = await cursor.limit(3).toArray()
+            const services = await cursor.toArray()
             res.send(services)
         })
 
