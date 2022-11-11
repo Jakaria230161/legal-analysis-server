@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient,ObjectId, ServerApiVersion } = require("mongodb");
 require('dotenv').config();
 
 const app = express();
@@ -110,12 +110,12 @@ async function run() {
         // })
 
 
-        app.get('/reviews', verifyJWT, async (req, res) => {
+        app.get('/reviews', async (req, res) => {
             //JWT  Token
-            const decoded = req.decoded;
-            if (decoded.email !== req.query.email) {
-                res.status(403).send({ message: 'unauthorized access' })
-            }
+            // const decoded = req.decoded;
+            // if (decoded.email !== req.query.email) {
+            //     res.status(403).send({ message: 'unauthorized access' })
+            // }
 
             let query = {}
             if (req.query.email) {
